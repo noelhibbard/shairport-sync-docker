@@ -52,32 +52,6 @@ then
 
     cd ..
     docker-compose up -d
-
-    # build local copy of NQPTP
-    cd ./nqptp
-    autoreconf -fi
-    ./configure --with-systemd-startup
-    make
-    make install
-    cd ..
-
-    # build local copy of shairport-sync
-    cd ./shairport-sync
-    autoreconf -fi
-    ./configure --sysconfdir=/etc \
-        --with-apple-alac \
-        --with-alsa \
-        --with-pa \
-        --with-soxr \
-        --with-convolution \
-        --with-ssl=openssl \
-        --with-avahi \
-        --with-airplay-2 \
-        --with-mqtt-client \
-        --with-dbus-interface
-    make -j
-    make install
-    cd ..
 else
     echo "shairport-sync and nqptp are already up to date."
 fi
