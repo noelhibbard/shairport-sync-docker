@@ -1,6 +1,11 @@
 # Introduction
 This guide assumes you have solid knowledge of Linux, shairport-sync, PulseAudio, Docker and Docker Compose. If you are solid on these things, this guide should be easy to follow. This guide also assumes your Linux server doesn’t have a desktop environment because this guide will have you disable the usermode PulseAudio service which would probably break a desktop environment. I am personally running Debian but Ubuntu should work with these instructions. Other distros may also work with minimal deviation from these instructions.
 
+## Clone this repo somewhere on your server
+```bash
+git clone https://github.com/noelhibbard/sharport-sync-docker.git
+```
+
 ## Install Docker and Docker Compose on host
 - Docker install instructions: https://docs.docker.com/engine/install/debian/
 - Docker Compose install instructions: https://docs.docker.com/compose/install/
