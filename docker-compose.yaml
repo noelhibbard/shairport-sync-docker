@@ -1,0 +1,42 @@
+services:
+  Instance1:
+    container_name: Instance1
+    image: shairport-sync:unstable-development
+    restart: unless-stopped
+    volumes:
+      - ./shairport-sync-instance1.conf:/etc/shairport-sync.conf
+      - /var/run/pulse:/var/run/pulse
+    environment:
+      - PULSE_SERVER=unix:/var/run/pulse/native
+      - PULSE_COOKIE=/tmp/pulseaudio.cookie
+    networks:
+      spsnet_shared:
+      spsnet:
+        ipv4_address: 192.168.1.101
+  Instance2:
+    container_name: Instance2
+    image: shairport-sync:unstable-development
+    restart: unless-stopped
+    volumes:
+      - ./shairport-sync-instance2.conf:/etc/shairport-sync.conf
+      - /var/run/pulse:/var/run/pulse
+    environment:
+      - PULSE_SERVER=unix:/var/run/pulse/native
+      - PULSE_COOKIE=/tmp/pulseaudio.cookie
+    networks:
+      spsnet_shared:
+      spsnet:
+        ipv4_address: 192.168.1.102
+networks:
+  spsnet:
+    name: spsnet
+    driver: macvlan
+    driver_opts:
+      parent: br0
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.254
+  spsnet_shared:
+    name: spsnet_shared
+    driver: bridge
