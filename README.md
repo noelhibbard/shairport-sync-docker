@@ -31,7 +31,7 @@ git clone https://github.com/noelhibbard/sharport-sync-docker.git
 ## Add PulseAudio sinks that point to ALSA outputs
 Add a line to ```/etc/pulse/system.pa``` for each ALSA output you want available in in Pulse. For example:
 ```
-load-module module-alsa-sink device=<device> sink-name=<sink-name>
+load-module module-alsa-sink device=<device> sink_name=<sink_name>
 ```
 Note: ```device``` is the ALSA output device you want to make available in PulseAudio (Example: ```hw:0```). ```sink-name``` is the name of the sink. What ever you use here is what you will use in shairport-sync.conf for the pa sink.
 
