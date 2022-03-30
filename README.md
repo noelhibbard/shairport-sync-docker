@@ -27,6 +27,11 @@ git clone https://github.com/noelhibbard/sharport-sync-docker.git
     sudo systemctl --system enable $PWD/pulseaudio.service
     sudo systemctl start pulseaudio.service
     ```
+## Configure PulseAudio to use a UNIX socket
+Empty out the entire ```/etc/pulse/system.pa``` and add this single line:
+```
+load-module module-native-protocol-unix
+```
 
 ## Add PulseAudio sinks that point to ALSA outputs
 Add a line to ```/etc/pulse/system.pa``` for each ALSA output you want available in in Pulse. For example:
