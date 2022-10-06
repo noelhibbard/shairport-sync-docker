@@ -46,7 +46,7 @@ cd ..
 if [ $needsupdate -gt 0 ]
 then
     cd ./shairport-sync
-    sed -i 's/.\/configure --/.\/configure --with-pa --/' ./docker/Dockerfile
+    sed -i 's/configure --/configure --with-pa --/' ./docker/Dockerfile
     sed -i 's/git \\/git \\\n        pulseaudio-dev \\/' ./docker/Dockerfile
     sed -i 's/alsa-lib \\/alsa-lib \\\n        pulseaudio \\\n        pulseaudio-utils \\\n        curl \\/' ./docker/Dockerfile
 
