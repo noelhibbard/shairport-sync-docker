@@ -1,7 +1,7 @@
 services:
   Instance1:
     container_name: Instance1
-    image: shairport-sync:unstable-development
+    image: shairport-sync:pulse
     restart: unless-stopped
     volumes:
       - ./shairport-sync-instance1.conf:/etc/shairport-sync.conf
@@ -15,7 +15,7 @@ services:
         ipv4_address: 192.168.1.101
   Instance2:
     container_name: Instance2
-    image: shairport-sync:unstable-development
+    image: shairport-sync:pulse
     restart: unless-stopped
     volumes:
       - ./shairport-sync-instance2.conf:/etc/shairport-sync.conf
