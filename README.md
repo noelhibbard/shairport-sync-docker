@@ -3,7 +3,7 @@ This guide assumes you have solid knowledge of Linux, shairport-sync, PulseAudio
 
 ## Clone this repo somewhere on your server
 ```bash
-git clone https://github.com/noelhibbard/sharport-sync-docker.git
+git clone https://github.com/noelhibbard/shairport-sync-docker.git
 ```
 
 ## Install Docker and Docker Compose Pluggin on host
