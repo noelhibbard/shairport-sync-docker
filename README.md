@@ -39,7 +39,7 @@ echo "load-module module-alsa-sink device=<device> sink_name=<sink_name>" >> /et
 ```
 Note: ```device``` is the ALSA output device you want to make available in PulseAudio (Example: ```hw:0```). ```sink-name``` is the name of the sink. What ever you use here is what you will use in shairport-sync.conf for the pa sink.
 
-Restart PulseAudio
+Restart PulseAudio to reload config
 ```bash
 sudo systemctl restart pulseaudio
 ```

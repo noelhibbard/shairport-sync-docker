@@ -26,7 +26,7 @@ networks:
     name: spsnet
     driver: macvlan
     driver_opts:
-      parent: br0
+      parent: eth0
     ipam:
       config:
         - subnet: 192.168.1.0/24
