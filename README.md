@@ -50,7 +50,7 @@ The docker containers will be placed on your host network. Before you can do tha
 - set gateway here: ```networks.spsnet.ipam.config.gateway``` (Example: ```192.168.1.254```)
 
 ## Configure SPS instances within docker-compose.yaml
-A single docker-compose.yaml will contain the configureation for all your SPS docker containers. My example has two instances. One named Instance1 with the IP 192.168.1.101 and the other named Instance2 with the IP 192.168.1.102. Edit these how ever fits your environment. Also notice the volume entry that maps your shairport-sync.conf into the container. Make sure you also edit the name and PulseAudio sink wihin your shairport-sync.conf files.
+A single docker-compose.yaml will contain the configureation for all your SPS docker containers. My example has two instances. One named Instance1 with the IP 192.168.1.101 and the other named Instance2 with the IP 192.168.1.102. Edit these how ever fits your environment. Also notice the volume entry that maps your shairport-sync.conf into the container. Make sure you also edit the name and PulseAudio sink within your shairport-sync.conf files.
 
 ## Start the containers
 ```bash
