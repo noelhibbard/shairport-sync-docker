@@ -1,28 +1,22 @@
 services:
   Instance1:
     container_name: Instance1
-    image: shairport-sync:pulse
+    image: mikebrady/shairport-sync:latest
     restart: unless-stopped
     volumes:
       - ./shairport-sync-instance1.conf:/etc/shairport-sync.conf
-      - /var/run/pulse:/var/run/pulse
-    environment:
-      - PULSE_SERVER=unix:/var/run/pulse/native
-      - PULSE_COOKIE=/tmp/pulseaudio.cookie
+      - /var/run/pulse/native:/tmp/pulseaudio.socket
     networks:
       spsnet_shared:
       spsnet:
         ipv4_address: 192.168.1.101
   Instance2:
     container_name: Instance2
-    image: shairport-sync:pulse
+    image: mikebrady/shairport-sync:latest
     restart: unless-stopped
     volumes:
       - ./shairport-sync-instance2.conf:/etc/shairport-sync.conf
-      - /var/run/pulse:/var/run/pulse
-    environment:
-      - PULSE_SERVER=unix:/var/run/pulse/native
-      - PULSE_COOKIE=/tmp/pulseaudio.cookie
+      - /var/run/pulse/native:/tmp/pulseaudio.socket
     networks:
       spsnet_shared:
       spsnet:

@@ -21,29 +21,29 @@ git clone https://github.com/noelhibbard/sharport-sync-docker.git
     ```
 - Install system wide PulseAudio systemd service
     ```bash
+    sudo usermod -d /var/run/pulse pulse
     sudo adduser root audio
     sudo adduser root pulse-access
-    sudo adduser pulse audio
-    sudo systemctl --system enable $PWD/pulseaudio.service
-    sudo systemctl start pulseaudio.service
+    sudo systemctl --system enable $PWD/pulseaudio.service --now
     ```
 ## Configure PulseAudio to use a UNIX socket
 Empty out the entire ```/etc/pulse/system.pa``` and add this single line:
 ```
-load-module module-native-protocol-unix
+echo "load-module module-native-protocol-unix auth-anonymous=1" > /etc/pulse/system.pa
 ```
 
 ## Add PulseAudio sinks that point to ALSA outputs
 Add a line to ```/etc/pulse/system.pa``` for each ALSA output you want available in in Pulse. For example:
 ```
-load-module module-alsa-sink device=<device> sink_name=<sink_name>
+echo "load-module module-alsa-sink device=<device> sink_name=<sink_name>" >> /etc/pulse/system.pa
 ```
 Note: ```device``` is the ALSA output device you want to make available in PulseAudio (Example: ```hw:0```). ```sink-name``` is the name of the sink. What ever you use here is what you will use in shairport-sync.conf for the pa sink.
 
-## Build shairport-sync docker image with PulseAudio support
+Restart PulseAudio
 ```bash
-./build-sps-docker-image.sh
+sudo systemctl restart pulseaudio
 ```
+
 ## Configure host network in docker-compose.yaml template
 The docker containers will be placed on your host network. Before you can do that you have to supply the physical network interface, subnet and gateway for your host network.
 - set interface here: ```networks.spsnet.driver_opts.parent``` (Example: ```eth0```)
@@ -55,26 +55,26 @@ A single docker-compose.yaml will contain the configureation for all your SPS do
 
 ## Start the containers
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Stop the containers
 ```bash
-docker-compose stop
+docker compose stop
 ```
 
 ## Restart the containers
 ```bash
-docker-compose restart
+docker compose restart
 ```
 
 ## Monitor shairport-sync output
 ```bash
-docker-compose logs -f
+docker compose logs -f
 ```
 
 ## Update your containers to the latest version of NQPTP and shairport-sync.
-This script will check to see if there are newer versions of NQPTP or shairport-sync and if so, it will pull the changes, rebuild your docker image and then restart the containers.
 ```bash
-./update.sh
+docker compose pull
+docker compose up -d
 ```
