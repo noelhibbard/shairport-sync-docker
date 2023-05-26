@@ -6,7 +6,7 @@ This guide assumes you have solid knowledge of Linux, shairport-sync, PulseAudio
 git clone https://github.com/noelhibbard/shairport-sync-docker.git
 ```
 
-## Install Docker and Docker Compose Pluggin on host
+## Install Docker and Docker Compose Plugin on host
 - Docker install instructions: https://docs.docker.com/engine/install/debian/
 
 ## Install / Configure PulseAudio on host
